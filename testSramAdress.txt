@@ -1,0 +1,32 @@
+
+	/* DEBUG CODE FOR SRAM */
+
+	// test if data in extern sram was overwritten or not
+//	int overwrittenPosition = 0;
+//	externImgBuff[0] = internImgBuff[0];
+//	for (int i = 1; i < IMAGE_MEM_SIZE * NUM_IMG; i++) {
+//		if (externImgBuff[0] == internImgBuff[0]) {
+//			overwrittenPosition = i;
+//			break;
+//		}
+//
+//		externImgBuff[i] = internImgBuff[i];
+//	}
+//
+//	SEGGER_RTT_printf(0, "%s : %d", "Data was overwritten at index",
+//			overwrittenPosition);
+
+	// test how it was overwritten
+	// 4096 is overwritten position after the first test.
+
+	int counter = 0;
+	externImgBuff = new uint8_t [IMAGE_MEM_SIZE * NUM_IMG];
+
+	for (int j = 1; j < (IMAGE_MEM_SIZE * NUM_IMG); j++) {
+		SEGGER_RTT_printf(0,"%s : %d", "block", j);
+		while (counter < 4096*j) {
+			externImgBuff[counter] = internImgBuff[counter];
+			counter++;
+		}
+
+	}

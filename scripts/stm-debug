@@ -1,0 +1,7 @@
+#/bin/bash
+tmux new-window "arm-none-eabi-gdb -x ./scripts/.gdbinit"
+tmux rename-window 'stm-debug'
+tmux splitw -h -p 40 "sleep 1 && telnet localhost 19021"
+tmux splitw -v -p 50 "python ./scripts/Y4N_SCRIPT_Debug_Server.py"
+tmux splitw -v -p 50 "python genImg.py"
+tmux selectp -t 3

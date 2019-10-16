@@ -1,0 +1,6 @@
+Import('env')
+#Script for Drivers
+objs = []
+#objs.append(env.Object(Glob('STM32L4xx_HAL_Driver/Src/*.c')))
+objs.append(env.Object(Glob('STM32F4xx_HAL_Driver/Src/*.c')))
+Return('objs')
